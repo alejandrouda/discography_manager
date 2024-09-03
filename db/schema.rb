@@ -10,5 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_03_140316) do
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lps", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_lps_on_artist_id"
+  end
+
+  create_table "song_authors", force: :cascade do |t|
+    t.integer "song_id", null: false
+    t.integer "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_song_authors_on_author_id"
+    t.index ["song_id"], name: "index_song_authors_on_song_id"
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string "name"
+    t.integer "lp_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lp_id"], name: "index_songs_on_lp_id"
+  end
+
+  add_foreign_key "lps", "artists"
+  add_foreign_key "song_authors", "authors"
+  add_foreign_key "song_authors", "songs"
+  add_foreign_key "songs", "lps"
 end
