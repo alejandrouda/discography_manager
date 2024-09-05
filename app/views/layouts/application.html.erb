@@ -9,7 +9,15 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render "shared/components/sidebar" %>
-    <%= yield %>
+    <% if user_signed_in? %>
+      <div class="dashboard">
+        <%= render "shared/components/dashboard_sidebar" %>
+        <div class="dashboard-content">
+          <%= yield %> <!-- This will render the specific content based on the route -->
+        </div>
+      </div>
+    <% else %>
+      <%= yield %> <!-- This can render the login/signup form or other content for unauthenticated users -->
+    <% end %>
   </body>
 </html>

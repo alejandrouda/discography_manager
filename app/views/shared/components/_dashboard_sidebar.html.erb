@@ -1,0 +1,47 @@
+<section class="side-bar">
+  <div class="side-bar-height d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+    <%= link_to root_path, class: "nav-link active", aria: { current: "page" } do %>
+      <h3 class>Discography Manager</h3>
+    <% end %>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <%= link_to root_path, class: "nav-link active", aria: { current: "page" } do %>
+          <svg class="bi me-2" width="16" height="16">
+            <use xlink:href="#home"/>
+          </svg>
+          Artists
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to lps_path, class: "nav-link", aria: { current: "page" } do %>
+          <svg class="bi me-2" width="16" height="16">
+            <use xlink:href="#home"/>
+          </svg>
+          LPs
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to report_path, class: "nav-link", aria: { current: "page" } do %>
+          <svg class="bi me-2" width="16" height="16">
+            <use xlink:href="#home"/>
+          </svg>
+          Report
+        <% end %>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="rounded-circle">
+          <%= render "shared/snippets/coditramuntana_logo" %>
+        </div>
+        <strong>CodiTramuntana</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li>
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item sign-out-link" %>
+        </li>
+      </ul>
+    </div>
+  </section>

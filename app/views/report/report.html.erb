@@ -1,0 +1,23 @@
+<!-- app/views/home/index.html.erb -->
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">LP ID</th>
+      <th scope="col">LP Name</th>
+      <th scope="col">Artist</th>
+      <th scope="col">Number of songs</th>
+      <th scope="col">Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lps.each do |lp| %>
+      <tr>
+        <th scope="row"><%= lp.id %></th>
+        <td><%= lp.name %></td>
+        <td><%= lp.artist.name %></td>
+        <td><%= lp.songs.count %></td>
+        <td><%= lp.songs.map { |song| song.authors.map(&:name).join(', ') }.uniq.join(', ') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

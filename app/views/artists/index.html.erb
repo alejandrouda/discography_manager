@@ -1,0 +1,18 @@
+<!-- app/views/home/index.html.erb -->
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Artist ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @artists.each do |artist| %>
+      <tr>
+        <th scope="row"><%= artist.id %></th>
+        <td><%= artist.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
