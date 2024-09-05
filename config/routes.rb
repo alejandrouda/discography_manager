@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'home/index'
-  root 'home#index'
+  get 'report', to: 'report#report'
+  devise_for :users
+  root 'artists#index'
 
   resources :artists do
     resources :lps, only: [:index, :show]
