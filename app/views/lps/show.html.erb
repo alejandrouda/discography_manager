@@ -1,0 +1,32 @@
+<div class="lp-show-container" style="max-width: 900px; margin: auto; padding: 20px;">
+  <div class="lp-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h1 class="lp-name" style="font-size: 2.5rem; font-weight: bold; color: #333;"><%= @lp.name %></h1>
+    <div class="lp-actions">
+      <%= link_to '< Back', lps_path, class: 'btn btn-outline btn-sm', style: 'margin-right: 10px;' %>
+      <%= link_to 'Edit', edit_lp_path(@lp), class: 'btn btn-outline-primary btn-sm', style: 'margin-right: 10px;' %>
+      <%= link_to "Delete", @lp, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm' %>
+    </div>
+  </div>
+  <div class="lp-description" style="font-size: 1.25rem; color: #555; margin-top: 10px;">
+    <p><%= @lp.description %></p>
+  </div>
+  <div class="lp-songs" style="margin-top: 30px;">
+    <h2 class="section-title" style="font-size: 1.5rem; font-weight: bold; color: #333;">Songs</h2>
+    <% if @lp.songs.any? %>
+      <ul class="list-group">
+        <% @lp.songs.each do |song| %>
+          <li class="list-group-item" style="display: flex; justify-content: space-between; align-items: center;">
+            <span><%= song.name %></span>
+            <span>
+              <% song.authors.each do |author| %>
+                <%= author.name %><%= ", " unless author == song.authors.last %>
+              <% end %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No songs available for this LP.</p>
+    <% end %>
+  </div>
+</div>

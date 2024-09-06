@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   root 'artists#index'
 
   resources :artists do
-    resources :lps, only: [:index, :show]
+    resources :lps
   end
 
   resources :lps do
-    resources :songs, only: [:index, :show]
+    resources :songs
   end
 
   resources :songs, only: [:index, :show]

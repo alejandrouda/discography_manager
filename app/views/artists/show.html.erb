@@ -1,2 +1,26 @@
-<h1>Artists#show</h1>
-<p>Find me in app/views/artists/show.html.erb</p>
+<div class="artist-show-container" style="max-width: 900px; margin: auto; padding: 20px;">
+  <div class="artist-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h1 class="artist-name" style="font-size: 2.5rem; font-weight: bold; color: #333;"><%= @artist.name %></h1>
+    <div class="artist-actions">
+      <%= link_to '< Back', artists_path, class: 'btn btn-outline btn-sm', style: 'margin-right: 10px;' %>
+      <%= link_to 'Edit', edit_artist_path(@artist), class: 'btn btn-outline-primary btn-sm', style: 'margin-right: 10px;' %>
+      <%= link_to "Delete", @artist, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm' %>
+    </div>
+  </div>
+  <div class="artist-description" style="font-size: 1.25rem; color: #555; margin-top: 10px;">
+    <p><%= @artist.description %></p>
+  </div>
+  <div class="artist-lps" style="font-size: 1.25rem; color: #555; margin-top: 20px;">
+    <p>Total LPs: <%= @artist.lps.count %></p>
+  </div>
+  <div class="artist-lps-list" style="margin-top: 20px;">
+    <h4 style="font-size: 1.5rem; font-weight: bold; color: #333;">LPs by <%= @artist.name %>:</h4>
+    <ul style="margin-top: 20px; list-style: none; padding-left: 0;">
+      <% @artist.lps.each do |lp| %>
+        <li style="margin-bottom: 5px;">
+          <%= link_to lp.name, lp_path(lp), class: 'btn btn-outline-primary btn-sm' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
