@@ -1,10 +1,15 @@
 # app/controllers/lps_controller.rb
 class LpsController < ApplicationController
   before_action :set_lp, only: [:show, :edit, :update, :destroy]
-
   def index
-    @lps = Lp.all
+    @selected_artist = params[:artist_id] # This sets the selected_artist to the value from params
+    if @selected_artist.present?
+      @lps = Lp.where(artist_id: @selected_artist)
+    else
+      @lps = Lp.all
+    end
   end
+  
 
   def show
   end
